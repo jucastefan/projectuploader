@@ -14,13 +14,7 @@ const formReducer = (state, action) => {
   }
 
   return {
-    value: {
-      title: '',
-      description: '',
-      image: '',
-      web: '',
-      github: '',
-    },
+    value: null,
     isValid: true,
   }
 }
@@ -43,6 +37,19 @@ const Form = (props) => {
     isValid: true,
   })
 
+  const onClickHandler = () => {
+    dispatchForm({
+      type: 'FORM_INPUT',
+      val: {
+        title: nameProjectInputRef.current.value,
+        description: nameDescriptionInputRef.current.value,
+        image: nameImageInputRef.current.value,
+        web: nameWebLiveInputRef.current.value,
+        github: nameGitHubInputRef.current.value,
+      },
+    })
+  }
+
   const submitHandler = (e) => {
     e.preventDefault()
 
@@ -59,17 +66,6 @@ const Form = (props) => {
       }, 1500)
       return
     }
-
-    dispatchForm({
-      type: 'FORM_INPUT',
-      val: {
-        title: nameProjectInputRef.current.value,
-        description: nameDescriptionInputRef.current.value,
-        image: nameImageInputRef.current.value,
-        web: nameWebLiveInputRef.current.value,
-        github: nameGitHubInputRef.current.value,
-      },
-    })
 
     props.submitPostProject(formState.value)
   }
@@ -146,7 +142,11 @@ const Form = (props) => {
             placeholder="Leave a description"
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-dark bg-gradient fs-5">
+        <button
+          type="submit"
+          class="btn btn-dark bg-gradient fs-5"
+          onClick={onClickHandler}
+        >
           <i className="bi bi-cloud-arrow-up"></i> Upload
         </button>
         <button

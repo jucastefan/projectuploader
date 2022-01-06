@@ -71,7 +71,7 @@ const Form = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="container shadow border p-3 bg-light bg-gradient">
       {!formState.isValid && (
         <p className={`${classes.jellohorizontal} fs-3 fw-lighter`}>
           🚨Please complete the form

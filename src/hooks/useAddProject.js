@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const useAddProject = () => {
-  const [isLoading, setIsLoading] = useState(false)
   const [isError, setError] = useState(false)
   const [uploaded, setUploaded] = useState(false)
 
@@ -27,39 +26,23 @@ const useAddProject = () => {
       const data = await response.json()
 
       if (data) {
-        setIsLoading(true)
-
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 800)
-
-        setTimeout(() => {
-          setUploaded('✔️Project uploaded')
-        }, 900)
-
+        setUploaded('✔️Project uploaded')
         setTimeout(() => {
           setUploaded(false)
-        }, 2500)
+        }, 2000)
       }
     } catch (err) {
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 800)
-
-      setTimeout(() => {
+      if (err) {
         setError(`🚨${err.message}`)
-      }, 900)
-
-      setTimeout(() => {
-        setError(false)
-      }, 2500)
+        setTimeout(() => {
+          setError(false)
+        }, 2000)
+      }
     }
   }
 
   return {
     uploaded,
-    isLoading,
     isError,
     submitPostProject,
   }

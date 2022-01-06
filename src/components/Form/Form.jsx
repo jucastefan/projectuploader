@@ -1,5 +1,5 @@
 import React, { useReducer, useRef, useState } from 'react'
-import LoadingSpinner from '../LoadingSpinner'
+
 import classes from './Form.module.css'
 
 const formReducer = (state, action) => {
@@ -76,7 +76,6 @@ const Form = (props) => {
 
   return (
     <div className="container">
-      {props.loading && <LoadingSpinner />}
       {!formState.isValid && (
         <p className={`${classes.jellohorizontal} fs-3 fw-lighter`}>
           🚨Please complete the form

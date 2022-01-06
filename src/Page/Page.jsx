@@ -4,7 +4,7 @@ import Form from '../components/Form'
 import useAddProject from '../hooks/useAddProject'
 
 const Page = () => {
-  const { uploaded,isLoading, isError, submitPostProject } = useAddProject()
+  const { uploaded, isError, submitPostProject } = useAddProject()
 
   const onSubmit = (project) => {
     submitPostProject(project)
@@ -16,7 +16,6 @@ const Page = () => {
         <Header />
         <Form
           submitPostProject={onSubmit}
-          loading={isLoading}
           error={isError}
           uploaded={uploaded}
         />
